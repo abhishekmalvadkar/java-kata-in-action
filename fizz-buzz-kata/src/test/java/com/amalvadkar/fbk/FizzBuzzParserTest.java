@@ -20,12 +20,22 @@ public class FizzBuzzParserTest {
     }
 
     @Test
-    void should_return_2_when_passed_input_as_1() {
+    void should_return_2_when_passed_input_as_2() {
         assertThat(fizzBuzzParser.parse(2)).isEqualTo("2");
     }
 
     @Test
     void should_return_4_when_passed_input_as_4() {
         assertThat(fizzBuzzParser.parse(4)).isEqualTo("4");
+    }
+
+    @Test
+    void should_return_Fizz_when_passed_input_as_3() {
+        assertThat(fizzBuzzParser.parse(3)).isEqualTo("Fizz");
+    }
+
+    @Test
+    void should_return_Fizz_when_passed_input_as_6() {
+        assertThat(fizzBuzzParser.parse(6)).isEqualTo("Fizz");
     }
 }
