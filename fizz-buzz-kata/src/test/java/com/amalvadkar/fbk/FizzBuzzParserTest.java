@@ -38,4 +38,9 @@ public class FizzBuzzParserTest {
     void should_return_Fizz_when_passed_input_as_6() {
         assertThat(fizzBuzzParser.parse(6)).isEqualTo("Fizz");
     }
+
+    @Test
+    void should_return_Fizz_when_passed_input_as_9() {
+        assertThat(fizzBuzzParser.parse(9)).isEqualTo("Fizz");
+    }
 }
