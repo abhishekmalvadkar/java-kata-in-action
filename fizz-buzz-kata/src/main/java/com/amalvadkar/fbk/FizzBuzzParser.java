@@ -1,7 +1,5 @@
 package com.amalvadkar.fbk;
 
-import org.jspecify.annotations.NonNull;
-
 public class FizzBuzzParser {
 
     private static final String FIZZ = "Fizz";
