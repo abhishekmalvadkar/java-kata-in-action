@@ -32,3 +32,22 @@ Then:
     It should return "BuzzBuzz"
     Because it contains 5, and
     it is divisible by 6
+
+Given:
+    input number is 53
+When:
+    Ask to parse
+Then:
+    It should return "FizzBuzz"
+    Because it contains 3, and
+    it contains 5
+
+Given:
+    input number is 35
+When:
+    Ask to parse
+Then:
+    It should return "FizzBuzzBuzz"
+    Because it contains 3, and
+    it contains 5, and
+    it is divisible by 5

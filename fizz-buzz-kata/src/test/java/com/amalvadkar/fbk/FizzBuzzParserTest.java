@@ -65,4 +65,14 @@ public class FizzBuzzParserTest {
     void should_return_BuzzFizzBuzz_when_passed_input_as_15_because_it_contains_5_and_divisible_by_3_and_5_both() {
         assertThat(fizzBuzzParser.parse(15)).isEqualTo("BuzzFizzBuzz");
     }
+
+    @Test
+    void should_return_FizzBuzz_when_passed_input_as_53_because_it_contains_3_and_contains_5() {
+        assertThat(fizzBuzzParser.parse(53)).isEqualTo("FizzBuzz");
+    }
+
+    @Test
+    void should_return_FizzBuzzBuzz_when_passed_input_as_35_because_it_contains_3_and_contains_5_and_divisible_by_5() {
+        assertThat(fizzBuzzParser.parse(35)).isEqualTo("FizzBuzzBuzz");
+    }
 }
