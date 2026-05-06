@@ -32,8 +32,8 @@ public class FizzBuzzParserTest {
     }
 
     @Test
-    void should_return_Fizz_when_passed_input_as_3() {
-        assertThat(fizzBuzzParser.parse(3)).isEqualTo("Fizz");
+    void should_return_FizzFizz_when_passed_input_as_3_because_it_contains_3_and_divisible_by_3() {
+        assertThat(fizzBuzzParser.parse(3)).isEqualTo("FizzFizz");
     }
 
     @Test
@@ -47,8 +47,8 @@ public class FizzBuzzParserTest {
     }
 
     @Test
-    void should_return_Buzz_when_passed_input_as_5() {
-        assertThat(fizzBuzzParser.parse(5)).isEqualTo("Buzz");
+    void should_return_BuzzBuzz_when_passed_input_as_5_because_it_contains_5_and_divisible_by_5() {
+        assertThat(fizzBuzzParser.parse(5)).isEqualTo("BuzzBuzz");
     }
 
     @Test
@@ -57,12 +57,12 @@ public class FizzBuzzParserTest {
     }
 
     @Test
-    void should_return_FizzBuzz_when_passed_input_as_15() {
-        assertThat(fizzBuzzParser.parse(15)).isEqualTo("FizzBuzz");
+    void should_return_Fizz_when_passed_input_as_13_because_it_contains_3() {
+        assertThat(fizzBuzzParser.parse(13)).isEqualTo("Fizz");
     }
 
     @Test
-    void should_return_Fizz_when_passed_input_as_13_because_it_contains_3() {
-        assertThat(fizzBuzzParser.parse(13)).isEqualTo("Fizz");
+    void should_return_BuzzFizzBuzz_when_passed_input_as_15_because_it_contains_5_and_divisible_by_3_and_5_both() {
+        assertThat(fizzBuzzParser.parse(15)).isEqualTo("BuzzFizzBuzz");
     }
 }

@@ -5,17 +5,52 @@ public class FizzBuzzParser {
     private static final String FIZZ = "Fizz";
     private static final String BUZZ = "Buzz";
     private static final String FIZZ_BUZZ = FIZZ + BUZZ;
+    private static final String THREE = "3";
+    private static final String FIVE = "5";
 
     public String parse(int number) {
-        if (contains3(number)) return FIZZ;
-        if (isDivisibleBy3And5(number)) return FIZZ_BUZZ;
-        if (isDivisibleBy3(number)) return FIZZ;
-        if (isDivisibleBy5(number)) return BUZZ;
+        if (contains3Or5(number)) return parsed(number);
+        if (hasDivisibilityBy3Or5(number)) return parsedNumberIfDivisibleBy3or5(number);
         return asString(number);
     }
 
+    private static boolean hasDivisibilityBy3Or5(int number) {
+        return isDivisibleBy3(number) || isDivisibleBy5(number);
+    }
+
+    private static String parsedNumberIfDivisibleBy3or5(int number) {
+        if (isDivisibleBy3And5(number)) return FIZZ_BUZZ;
+        if (isDivisibleBy3(number)) return FIZZ;
+        return BUZZ;
+    }
+
+    private static boolean contains3Or5(int number) {
+        return contains3(number) || contains5(number);
+    }
+
+    private String parsed(int number) {
+        StringBuilder builder = new StringBuilder();
+        if (contains3(number)) builder.append(FIZZ);
+        if (contains5(number)) builder.append(BUZZ);
+        if (hasDivisibilityBy3Or5(number)) builder.append(parsedNumberIfDivisibleBy3or5(number));
+        String parsedNumber = builder.toString();
+        return doesNotMatchAnyCriteria(parsedNumber) ? asString(number) : parsedNumber;
+    }
+
+    private static boolean doesNotMatchAnyCriteria(String parsedNumber) {
+        return parsedNumber.isEmpty();
+    }
+
     private static boolean contains3(int number) {
-        return asString(number).contains("3");
+        return has(number, THREE);
+    }
+
+    private static boolean has(int number, String containsNumber) {
+        return asString(number).contains(containsNumber);
+    }
+
+    private static boolean contains5(int number) {
+        return has(number, FIVE);
     }
 
     private static String asString(int number) {

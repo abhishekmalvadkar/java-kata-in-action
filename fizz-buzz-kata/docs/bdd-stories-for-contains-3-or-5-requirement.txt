@@ -5,3 +5,30 @@ When:
 Then:
     It should return "Fizz"
     Because it contains 3
+
+Given:
+    input number is 15
+When:
+    Ask to parse
+Then:
+    It should return "BuzzFizzBuzz"
+    Because it contains 5, and
+    it is divisible by 3 and 5 both
+
+Given:
+    input number is 3
+When:
+    Ask to parse
+Then:
+    It should return "FizzFizz"
+    Because it contains 3, and
+    it is divisible by 3
+
+Given:
+    input number is 5
+When:
+    Ask to parse
+Then:
+    It should return "BuzzBuzz"
+    Because it contains 5, and
+    it is divisible by 6
