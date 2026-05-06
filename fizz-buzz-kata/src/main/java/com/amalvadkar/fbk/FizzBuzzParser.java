@@ -9,9 +9,12 @@ public class FizzBuzzParser {
     private static final String FIVE = "5";
 
     public String parse(int number) {
-        if (contains3Or5(number)) return parsed(number);
-        if (hasDivisibilityBy3Or5(number)) return parsedNumberIfDivisibleBy3or5(number);
-        return asString(number);
+        StringBuilder builder = new StringBuilder();
+        if (contains3(number)) builder.append(FIZZ);
+        if (contains5(number)) builder.append(BUZZ);
+        if (hasDivisibilityBy3Or5(number)) builder.append(parsedNumberIfDivisibleBy3or5(number));
+        String parsedNumber = builder.toString();
+        return doesNotMatchAnyCriteria(parsedNumber) ? asString(number) : parsedNumber;
     }
 
     private static boolean hasDivisibilityBy3Or5(int number) {
@@ -22,19 +25,6 @@ public class FizzBuzzParser {
         if (isDivisibleBy3And5(number)) return FIZZ_BUZZ;
         if (isDivisibleBy3(number)) return FIZZ;
         return BUZZ;
-    }
-
-    private static boolean contains3Or5(int number) {
-        return contains3(number) || contains5(number);
-    }
-
-    private String parsed(int number) {
-        StringBuilder builder = new StringBuilder();
-        if (contains3(number)) builder.append(FIZZ);
-        if (contains5(number)) builder.append(BUZZ);
-        if (hasDivisibilityBy3Or5(number)) builder.append(parsedNumberIfDivisibleBy3or5(number));
-        String parsedNumber = builder.toString();
-        return doesNotMatchAnyCriteria(parsedNumber) ? asString(number) : parsedNumber;
     }
 
     private static boolean doesNotMatchAnyCriteria(String parsedNumber) {
