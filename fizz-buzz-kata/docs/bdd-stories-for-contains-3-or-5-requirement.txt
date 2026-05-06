@@ -1,0 +1,7 @@
+Given:
+    input number is 13
+When:
+    Ask to parse
+Then:
+    It should return "Fizz"
+    Because it contains 3

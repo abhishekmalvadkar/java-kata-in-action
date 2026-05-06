@@ -7,13 +7,18 @@ public class FizzBuzzParser {
     private static final String FIZZ_BUZZ = FIZZ + BUZZ;
 
     public String parse(int number) {
+        if (contains3(number)) return FIZZ;
         if (isDivisibleBy3And5(number)) return FIZZ_BUZZ;
         if (isDivisibleBy3(number)) return FIZZ;
         if (isDivisibleBy5(number)) return BUZZ;
-        return itSelfAsString(number);
+        return asString(number);
     }
 
-    private static String itSelfAsString(int number) {
+    private static boolean contains3(int number) {
+        return asString(number).contains("3");
+    }
+
+    private static String asString(int number) {
         return String.valueOf(number);
     }
 
