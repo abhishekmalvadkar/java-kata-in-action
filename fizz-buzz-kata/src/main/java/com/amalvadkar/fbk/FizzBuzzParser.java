@@ -11,7 +11,8 @@ public class FizzBuzzParser {
     private static final String FIZZ_BUZZ = FIZZ + BUZZ;
     private static final String THREE = "3";
     private static final String FIVE = "5";
-    public static final String NEW_LINE = "\n";
+    private static final String NEW_LINE = "\n";
+    private static final int START_FROM_ONE = 1;
 
     public String parse(int number) {
         StringBuilder builder = new StringBuilder();
@@ -20,6 +21,13 @@ public class FizzBuzzParser {
         if (hasDivisibilityBy3Or5(number)) builder.append(parsedNumberIfDivisibleBy3or5(number));
         String parsedNumber = builder.toString();
         return doesNotMatchAnyCriteria(parsedNumber) ? asString(number) : parsedNumber;
+    }
+
+    public String parseTill(int tillNumber) {
+        return IntStream.rangeClosed(START_FROM_ONE, tillNumber)
+                .boxed()
+                .map(this::parse)
+                .collect(joining(NEW_LINE));
     }
 
     private static boolean hasDivisibilityBy3Or5(int number) {
@@ -62,13 +70,6 @@ public class FizzBuzzParser {
 
     private static boolean isDivisibleBy3(int input) {
         return input % 3 == 0;
-    }
-
-    public String parseTill(int tillNumber) {
-        return IntStream.rangeClosed(1, tillNumber)
-                .boxed()
-                .map(this::parse)
-                .collect(joining(NEW_LINE));
     }
 
 }
