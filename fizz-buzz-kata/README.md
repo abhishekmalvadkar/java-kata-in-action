@@ -64,9 +64,9 @@ Enhance the logic with additional conditions:
 ```shell
 1
 2
-Fizz
+FizzFizz
 4
-Buzz
+BuzzBuzz
 ```
 
 ## Focus

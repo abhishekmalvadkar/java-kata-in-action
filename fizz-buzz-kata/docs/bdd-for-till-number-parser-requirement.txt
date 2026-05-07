@@ -1,0 +1,11 @@
+Given:
+    input is 5
+When:
+    Ask to parse
+Then:
+    Result should be:
+    1
+    2
+    FizzFizz
+    4
+    BuzzBuzz
