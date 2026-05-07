@@ -1,20 +1,10 @@
 package com.amalvadkar.fbk;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Tag("fizz-buzz")
-public class FizzBuzzParserTest {
-
-    FizzBuzzParser fizzBuzzParser;
-
-    @BeforeEach
-    void setUp() {
-        fizzBuzzParser = new FizzBuzzParser();
-    }
+public class FizzBuzzParserParseTest extends AbstractFizzBuzzTest {
 
     @Test
     void should_return_1_when_passed_input_as_1() {

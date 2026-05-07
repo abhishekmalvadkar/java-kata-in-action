@@ -58,4 +58,8 @@ public class FizzBuzzParser {
     private static boolean isDivisibleBy3(int input) {
         return input % 3 == 0;
     }
+
+    public String parseTill(int tillNumber) {
+        return "";
+    }
 }
