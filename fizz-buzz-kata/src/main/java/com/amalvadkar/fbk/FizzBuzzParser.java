@@ -1,6 +1,8 @@
 package com.amalvadkar.fbk;
 
-import java.util.ArrayList;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.joining;
 
 public class FizzBuzzParser {
 
@@ -9,6 +11,7 @@ public class FizzBuzzParser {
     private static final String FIZZ_BUZZ = FIZZ + BUZZ;
     private static final String THREE = "3";
     private static final String FIVE = "5";
+    public static final String NEW_LINE = "\n";
 
     public String parse(int number) {
         StringBuilder builder = new StringBuilder();
@@ -62,10 +65,10 @@ public class FizzBuzzParser {
     }
 
     public String parseTill(int tillNumber) {
-        var parsedResultList = new ArrayList<String>();
-        for (int i = 1; i <= tillNumber; i++) {
-            parsedResultList.add(parse(i));
-        }
-        return String.join("\n", parsedResultList);
+        return IntStream.rangeClosed(1, tillNumber)
+                .boxed()
+                .map(this::parse)
+                .collect(joining(NEW_LINE));
     }
+
 }
