@@ -16,4 +16,24 @@ public class FizzBuzzParserParseTillTest extends AbstractFizzBuzzTest {
                 BuzzBuzz""");
     }
 
+    @Test
+    void should_return_parsed_result_till_15() {
+        assertThat(fizzBuzzParser.parseTill(15)).isEqualTo("""
+            1
+            2
+            FizzFizz
+            4
+            BuzzBuzz
+            Fizz
+            7
+            8
+            Fizz
+            Buzz
+            11
+            Fizz
+            Fizz
+            14
+            BuzzFizzBuzz""");
+    }
+
 }
