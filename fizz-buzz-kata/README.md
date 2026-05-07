@@ -52,6 +52,23 @@ Enhance the logic with additional conditions:
 
 ---
 
+## Stage 3 – Till number parser
+
+* Input will be till number means till that number we need fizz buzz parsed result
+
+## Examples
+
+* Input : 5
+* Means result will from 1 to till 5 parsed result like below
+
+```shell
+1
+2
+Fizz
+4
+Buzz
+```
+
 ## Focus
 
 * Clean code
