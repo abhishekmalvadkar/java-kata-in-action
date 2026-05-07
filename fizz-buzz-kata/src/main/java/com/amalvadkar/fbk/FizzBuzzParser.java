@@ -1,5 +1,7 @@
 package com.amalvadkar.fbk;
 
+import java.util.ArrayList;
+
 public class FizzBuzzParser {
 
     private static final String FIZZ = "Fizz";
@@ -60,6 +62,10 @@ public class FizzBuzzParser {
     }
 
     public String parseTill(int tillNumber) {
-        return "";
+        var parsedResultList = new ArrayList<String>();
+        for (int i = 1; i <= tillNumber; i++) {
+            parsedResultList.add(parse(i));
+        }
+        return String.join("\n", parsedResultList);
     }
 }
