@@ -73,6 +73,9 @@ public class FizzBuzzParser {
     }
 
     public String parseRange(int fromNumber, int toNumber) {
-        return "";
+        return IntStream.rangeClosed(fromNumber, toNumber)
+                .boxed()
+                .map(this::parse)
+                .collect(joining(NEW_LINE));
     }
 }
