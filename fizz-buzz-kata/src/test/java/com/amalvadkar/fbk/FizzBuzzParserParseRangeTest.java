@@ -15,4 +15,22 @@ public class FizzBuzzParserParseRangeTest extends AbstractFizzBuzzTest {
                 BuzzBuzz""");
     }
 
+    @Test
+    void should_return_parsed_result_from_3_to_15() {
+        assertThat(fizzBuzzParser.parseRange(3,15)).isEqualTo("""
+            FizzFizz
+            4
+            BuzzBuzz
+            Fizz
+            7
+            8
+            Fizz
+            Buzz
+            11
+            Fizz
+            Fizz
+            14
+            BuzzFizzBuzz""");
+    }
+
 }
