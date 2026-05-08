@@ -72,4 +72,7 @@ public class FizzBuzzParser {
         return input % 3 == 0;
     }
 
+    public String parseRange(int fromNumber, int toNumber) {
+        return "";
+    }
 }
