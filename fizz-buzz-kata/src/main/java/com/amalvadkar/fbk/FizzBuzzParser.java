@@ -24,7 +24,11 @@ public class FizzBuzzParser {
     }
 
     public String parseTill(int tillNumber) {
-        return IntStream.rangeClosed(START_FROM_ONE, tillNumber)
+        return parseRange(START_FROM_ONE, tillNumber);
+    }
+
+    public String parseRange(int fromNumber, int toNumber) {
+        return IntStream.rangeClosed(fromNumber, toNumber)
                 .boxed()
                 .map(this::parse)
                 .collect(joining(NEW_LINE));
@@ -70,12 +74,5 @@ public class FizzBuzzParser {
 
     private static boolean isDivisibleBy3(int input) {
         return input % 3 == 0;
-    }
-
-    public String parseRange(int fromNumber, int toNumber) {
-        return IntStream.rangeClosed(fromNumber, toNumber)
-                .boxed()
-                .map(this::parse)
-                .collect(joining(NEW_LINE));
     }
 }
