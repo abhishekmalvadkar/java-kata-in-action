@@ -69,6 +69,24 @@ FizzFizz
 BuzzBuzz
 ```
 
+## Stage 4 – Range parser
+
+* Input will be from and to number that means we need parsed result fromNumber to toNumber
+
+## Examples
+
+* Input : 
+  * fromNumber = 2
+  * toNumber = 5
+* Means result will from 2 to till 5 parsed result like below
+
+```shell
+2
+FizzFizz
+4
+BuzzBuzz
+```
+
 ## Focus
 
 * Clean code
