@@ -4,9 +4,9 @@
 
 ## Progress Tracker
 
-| #   | Kata                | Status         |
-| --- | ------------------- | -------------- |
-| 001 | FizzBuzz            | ✅ COMPLETED  |
+| #   | Kata                                   | Status         |
+| --- |----------------------------------------| -------------- |
+| 001 | [FizzBuzz](./fizz-buzz-kata/README.md) | ✅ COMPLETED |
 
 ---
 
