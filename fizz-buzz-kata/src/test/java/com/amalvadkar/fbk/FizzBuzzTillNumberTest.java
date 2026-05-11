@@ -4,11 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FizzBuzzParserParseRangeTest extends AbstractFizzBuzzTest {
+public class FizzBuzzTillNumberTest extends AbstractFizzBuzzTest {
 
     @Test
-    void should_return_parsed_result_from_2_to_5() {
-        assertThat(fizzBuzzParser.parseRange(2,5)).isEqualTo("""
+    void should_return_parsed_result_till_5() {
+        assertThat(TillNumber.of(5).parse()).isEqualTo("""
+                1
                 2
                 FizzFizz
                 4
@@ -16,8 +17,10 @@ public class FizzBuzzParserParseRangeTest extends AbstractFizzBuzzTest {
     }
 
     @Test
-    void should_return_parsed_result_from_3_to_15() {
-        assertThat(fizzBuzzParser.parseRange(3,15)).isEqualTo("""
+    void should_return_parsed_result_till_15() {
+        assertThat(TillNumber.of(15).parse()).isEqualTo("""
+            1
+            2
             FizzFizz
             4
             BuzzBuzz
