@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LogEntryTest extends AbstractLogAnalyzerTest {
+public class LogValidEntryParseTest extends AbstractLogAnalyzerTest {
     @Test
     void should_parse_single_log_entry_with_single_word_log_message() {
         LogEntry logEntry = LogEntry.parse("2026-07-10T10:00:00 INFO : login");
