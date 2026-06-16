@@ -13,7 +13,7 @@
     * Message : login
 
 * Scenario:
-  * Parse single log entry with multi word log message
+  * Parse single log entry with multi-word log message
 * Given:
   * Log entry: "2026-07-10T10:00:00 INFO : User login"
 * When:
