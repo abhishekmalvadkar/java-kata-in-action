@@ -5,6 +5,6 @@
 * Given:
   * Log entry: "INFO : login"
 * When:
-  * We call parse() method on LogParser
+  * We call parse() method on LogEntry
 * Then:
   * It should throw InvalidLogEntryException with message "Missing Timestamp"
