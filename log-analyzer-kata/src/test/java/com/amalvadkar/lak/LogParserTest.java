@@ -29,4 +29,15 @@ public class LogParserTest extends AbstractLogAnalyzerTest {
         assertThat(logEntry.getLogLevel()).isEqualTo(LogLevel.INFO);
         assertThat(logEntry.getMessage()).isEqualTo("User login");
     }
+
+    @Test
+    void should_parse_single_log_entry_with_more_spaces_in_the_middle() {
+        LogParser logParser = new LogParser();
+
+        LogEntry logEntry = logParser.parse("2026-07-10T10:00:00        INFO     :      User login");
+
+        assertThat(logEntry.getTimestamp()).isEqualTo("2026-07-10T10:00:00");
+        assertThat(logEntry.getLogLevel()).isEqualTo(LogLevel.INFO);
+        assertThat(logEntry.getMessage()).isEqualTo("User login");
+    }
 }
