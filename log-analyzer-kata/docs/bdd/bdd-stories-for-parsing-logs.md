@@ -3,7 +3,7 @@
 * Scenario:
   * Parse single log entry with single word log message
 * Given:
-  * Log entry: "2026-07-10T10:00:00 INFO login"
+  * Log entry: "2026-07-10T10:00:00 INFO : login"
 * When:
   * We call parse() method on LogParser
 * Then:

@@ -12,7 +12,7 @@ public class LogParserTest extends AbstractLogAnalyzerTest {
     void should_parse_single_log_entry_with_single_word_log_message() {
         LogParser logParser = new LogParser();
 
-        LogEntry logEntry = logParser.parse("2026-07-10T10:00:00 INFO login");
+        LogEntry logEntry = logParser.parse("2026-07-10T10:00:00 INFO : login");
 
         assertThat(logEntry.getTimestamp()).isEqualTo("2026-07-10T10:00:00");
         assertThat(logEntry.getLogLevel()).isEqualTo(LogLevel.INFO);
