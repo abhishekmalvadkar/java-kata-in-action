@@ -18,4 +18,14 @@ public class LogEntry {
                 message
         );
     }
+
+    public static LogEntry parse(String singleLogEntry) {
+        String[] logEntryParts = singleLogEntry.split("\\s+:\\s+");
+        String logEntryNonMessagePart = logEntryParts[0].trim();
+        String logEntryMessagePart = logEntryParts[1].trim();
+        String[] logEntryNonMessageParts = logEntryNonMessagePart.split("\\s+");
+        String timeStamp = logEntryNonMessageParts[0];
+        String logLevel = logEntryNonMessageParts[1];
+        return from(timeStamp, logLevel, logEntryMessagePart);
+    }
 }
