@@ -7,4 +7,4 @@
 * When:
   * We call parse() method on LogEntry
 * Then:
-  * It should throw InvalidLogEntryException with message "Missing Timestamp"
+  * It should throw IncompleteLogEntryException with message "Incomplete log entry"
