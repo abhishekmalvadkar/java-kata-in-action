@@ -1,13 +1,15 @@
 package com.amalvadkar.lak.domain;
 
 import com.amalvadkar.lak.enums.LogLevel;
-import com.amalvadkar.lak.exceptions.IncompleteLogEntryException;
+import com.amalvadkar.lak.exceptions.InvalidLogEntryException;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
 public class LogEntry {
+    private static final String LOG_FORMAT_REGEX = "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2})\\s+(INFO|WARN|ERROR)\\s+:\\s+(.+)$";
+
     private final LocalDateTime timestamp;
     private final LogLevel logLevel;
     private final String message;
@@ -26,10 +28,11 @@ public class LogEntry {
     }
 
     private static void validate(String singleLogEntry) {
-        String[] logEntryParts = singleLogEntry.split("\\s+", 4);
-        if (logEntryParts.length < 4) {
-            throw new IncompleteLogEntryException();
-        }
+        if (isNotValid(singleLogEntry)) throw new InvalidLogEntryException();
+    }
+
+    private static boolean isNotValid(String singleLogEntry) {
+        return !singleLogEntry.trim().matches(LOG_FORMAT_REGEX);
     }
 
     private static LogEntry parseValid(String singleLogEntry) {
