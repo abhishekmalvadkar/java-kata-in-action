@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LogFileTest extends AbstractLogAnalyzerTest {
+public class LogFileFromTest extends AbstractLogAnalyzerTest {
     @Test
     void should_from_multiple_log_entries() {
         String logEntries = """
