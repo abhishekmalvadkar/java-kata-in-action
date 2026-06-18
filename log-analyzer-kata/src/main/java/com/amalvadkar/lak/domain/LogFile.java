@@ -1,8 +1,10 @@
 package com.amalvadkar.lak.domain;
 
+import com.amalvadkar.lak.enums.LogLevel;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 public class LogFile {
@@ -24,5 +26,9 @@ public class LogFile {
 
     public List<LogEntry> entries() {
         return entries;
+    }
+
+    public Map<LogLevel, Long> groupByLevel() {
+        return Map.of();
     }
 }
