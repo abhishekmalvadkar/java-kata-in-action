@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+
 @RequiredArgsConstructor
 public class LogFile {
     private final List<LogEntry> entries;
@@ -29,6 +32,7 @@ public class LogFile {
     }
 
     public Map<LogLevel, Long> groupByLevel() {
-        return Map.of();
+        return entries.stream()
+                .collect(groupingBy(LogEntry::getLogLevel,counting()));
     }
 }
