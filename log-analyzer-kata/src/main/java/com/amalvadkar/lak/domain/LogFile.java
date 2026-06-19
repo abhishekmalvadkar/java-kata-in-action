@@ -18,12 +18,6 @@ public class LogFile {
         return new LogFile(parse(logEntries));
     }
 
-    private static List<LogEntry> parse(String logEntries) {
-        return logEntries.lines()
-                .map(LogEntry::parse)
-                .toList();
-    }
-
     public long entryCount() {
         return entries.size();
     }
@@ -45,13 +39,19 @@ public class LogFile {
         return findBy(logEntry -> logEntry.getLogLevel() == logLevel);
     }
 
+    public List<LogEntry> findEntriesByMessage(String message) {
+        return findBy(logEntry -> logEntry.getMessage().equals(message));
+    }
+
     private List<LogEntry> findBy(Predicate<LogEntry> predicate) {
         return entries.stream()
                 .filter(predicate)
                 .toList();
     }
 
-    public List<LogEntry> findEntriesByMessage(String message) {
-        return findBy(logEntry -> logEntry.getMessage().equals(message));
+    private static List<LogEntry> parse(String logEntries) {
+        return logEntries.lines()
+                .map(LogEntry::parse)
+                .toList();
     }
 }
