@@ -27,6 +27,10 @@ public class LogFile {
         return entries.size();
     }
 
+    public boolean isEmpty() {
+        return entryCount() == 0L;
+    }
+
     public List<LogEntry> entries() {
         return entries;
     }

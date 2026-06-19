@@ -19,10 +19,10 @@ public class LogFileEntryCountTest extends AbstractLogAnalyzerTest {
     }
 
     @Test
-    void should_return_0_as_total_entries_in_empty_log_file() {
+    void should_inform_log_file_is_empty_if_it_does_not_have_any_entries() {
         String logEntries = "";
         LogFile logFile = LogFile.from(logEntries);
 
-        assertThat(logFile.entryCount()).isEqualTo(0L);
+        assertThat(logFile.isEmpty()).isTrue();
     }
 }
