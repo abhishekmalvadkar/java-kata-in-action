@@ -39,4 +39,10 @@ public class LogFile {
         return entries.stream()
                 .collect(groupingBy(LogEntry::getLogLevel,counting()));
     }
+
+    public List<LogEntry> findEntriesByLevel(LogLevel logLevel) {
+        return entries.stream()
+                .filter(logEntry -> logEntry.getLogLevel() == logLevel)
+                .toList();
+    }
 }
