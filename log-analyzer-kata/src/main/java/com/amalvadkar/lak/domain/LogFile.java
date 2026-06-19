@@ -50,4 +50,8 @@ public class LogFile {
     private static Predicate<LogEntry> ifMatchWithGiven(LogLevel logLevel) {
         return logEntry -> logEntry.getLogLevel() == logLevel;
     }
+
+    public List<LogEntry> findEntriesByMessage(String message) {
+        return List.of();
+    }
 }
