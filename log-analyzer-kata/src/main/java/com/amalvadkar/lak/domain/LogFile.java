@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -42,7 +43,11 @@ public class LogFile {
 
     public List<LogEntry> findEntriesByLevel(LogLevel logLevel) {
         return entries.stream()
-                .filter(logEntry -> logEntry.getLogLevel() == logLevel)
+                .filter(ifMatchWithGiven(logLevel))
                 .toList();
+    }
+
+    private static Predicate<LogEntry> ifMatchWithGiven(LogLevel logLevel) {
+        return logEntry -> logEntry.getLogLevel() == logLevel;
     }
 }
