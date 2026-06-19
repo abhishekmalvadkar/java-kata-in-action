@@ -42,18 +42,16 @@ public class LogFile {
     }
 
     public List<LogEntry> findEntriesByLevel(LogLevel logLevel) {
-        return entries.stream()
-                .filter(ifMatchWithGiven(logLevel))
-                .toList();
+        return findBy(logEntry -> logEntry.getLogLevel() == logLevel);
     }
 
-    private static Predicate<LogEntry> ifMatchWithGiven(LogLevel logLevel) {
-        return logEntry -> logEntry.getLogLevel() == logLevel;
+    private List<LogEntry> findBy(Predicate<LogEntry> predicate) {
+        return entries.stream()
+                .filter(predicate)
+                .toList();
     }
 
     public List<LogEntry> findEntriesByMessage(String message) {
-        return entries.stream()
-                .filter(logEntry -> logEntry.getMessage().equals(message))
-                .toList();
+        return findBy(logEntry -> logEntry.getMessage().equals(message));
     }
 }
