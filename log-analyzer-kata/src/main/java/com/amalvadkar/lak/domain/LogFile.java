@@ -52,6 +52,8 @@ public class LogFile {
     }
 
     public List<LogEntry> findEntriesByMessage(String message) {
-        return List.of();
+        return entries.stream()
+                .filter(logEntry -> logEntry.getMessage().equals(message))
+                .toList();
     }
 }
