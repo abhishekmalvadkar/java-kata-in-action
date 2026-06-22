@@ -19,7 +19,7 @@ public class LogFileGroupByHourTest extends AbstractLogAnalyzerTest {
                 """;
         LogFile logFile = LogFile.from(logEntries);
 
-        assertThat(logFile.groupByHour()).containsExactlyInAnyOrderEntriesOf(
+        assertThat(logFile.groupEntryCountByHour()).containsExactlyInAnyOrderEntriesOf(
                 Map.of("2026-07-10T10", 3L,
                         "2026-07-10T11", 2L)
         );
@@ -33,7 +33,7 @@ public class LogFileGroupByHourTest extends AbstractLogAnalyzerTest {
                 """;
         LogFile logFile = LogFile.from(logEntries);
 
-        assertThat(logFile.groupByHour()).containsExactlyInAnyOrderEntriesOf(
+        assertThat(logFile.groupEntryCountByHour()).containsExactlyInAnyOrderEntriesOf(
                 Map.of("2026-07-10T10", 2L)
         );
     }
@@ -43,6 +43,6 @@ public class LogFileGroupByHourTest extends AbstractLogAnalyzerTest {
         String logEntries = "";
         LogFile logFile = LogFile.from(logEntries);
 
-        assertThat(logFile.groupByHour()).isEmpty();
+        assertThat(logFile.groupEntryCountByHour()).isEmpty();
     }
 }

@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
+import static java.lang.String.format;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
@@ -38,14 +38,14 @@ public class LogFile {
     }
 
     public List<LogEntry> findEntriesByLevel(LogLevel logLevel) {
-        return findBy(logEntry -> logEntry.getLogLevel() == logLevel);
+        return findEntriesBy(logEntry -> logEntry.getLogLevel() == logLevel);
     }
 
     public List<LogEntry> findEntriesByMessage(String message) {
-        return findBy(logEntry -> logEntry.getMessage().equals(message));
+        return findEntriesBy(logEntry -> logEntry.getMessage().equals(message));
     }
 
-    private List<LogEntry> findBy(Predicate<LogEntry> predicate) {
+    private List<LogEntry> findEntriesBy(Predicate<LogEntry> predicate) {
         return entries.stream()
                 .filter(predicate)
                 .toList();
@@ -57,13 +57,13 @@ public class LogFile {
                 .toList();
     }
 
-    public Map<String, Long> groupByHour() {
+    public Map<String, Long> groupEntryCountByHour() {
         return entries.stream()
-                .collect(Collectors.groupingBy(logEntry -> {
-                    LocalDateTime timestamp = logEntry.getTimestamp();
-                    String date = timestamp.toLocalDate().toString();
-                    int hour = timestamp.getHour();
-                    return String.format("%sT%s", date, hour);
-                }, counting()));
+                .collect(groupingBy(LogFile::formatAsDateHourOnly, counting()));
+    }
+
+    private static String formatAsDateHourOnly(LogEntry logEntry) {
+        LocalDateTime timestamp = logEntry.getTimestamp();
+        return format("%sT%s", timestamp.toLocalDate(), timestamp.getHour());
     }
 }
