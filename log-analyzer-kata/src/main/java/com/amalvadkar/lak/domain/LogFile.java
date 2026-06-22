@@ -3,9 +3,11 @@ package com.amalvadkar.lak.domain;
 import com.amalvadkar.lak.enums.LogLevel;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -53,5 +55,15 @@ public class LogFile {
         return logEntries.lines()
                 .map(LogEntry::parse)
                 .toList();
+    }
+
+    public Map<String, Long> groupByHour() {
+        return entries.stream()
+                .collect(Collectors.groupingBy(logEntry -> {
+                    LocalDateTime timestamp = logEntry.getTimestamp();
+                    String date = timestamp.toLocalDate().toString();
+                    int hour = timestamp.getHour();
+                    return String.format("%sT%s", date, hour);
+                }, counting()));
     }
 }
