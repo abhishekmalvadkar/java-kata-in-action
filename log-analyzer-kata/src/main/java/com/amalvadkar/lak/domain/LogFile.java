@@ -66,4 +66,8 @@ public class LogFile {
         LocalDateTime timestamp = logEntry.getTimestamp();
         return format("%sT%s", timestamp.toLocalDate(), timestamp.getHour());
     }
+
+    public String entriesBetween(LocalDateTime start, LocalDateTime end) {
+        return "";
+    }
 }
