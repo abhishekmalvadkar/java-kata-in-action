@@ -72,7 +72,8 @@ public class LogFile {
         return entries.stream()
                 .filter(logEntry -> {
                     LocalDateTime timestamp = logEntry.getTimestamp();
-                    return (timestamp.isAfter(from) && timestamp.isBefore(to) || timestamp.isEqual(from));
+                    return (timestamp.isAfter(from) && timestamp.isBefore(to) ||
+                            (timestamp.isEqual(from) || timestamp.isEqual(to)));
                 }).map(logEntry -> format("%s %s : %s",
                         logEntry.getTimestamp(),
                         logEntry.getLogLevel(),
