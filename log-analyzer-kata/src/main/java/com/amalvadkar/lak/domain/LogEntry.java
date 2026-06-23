@@ -45,4 +45,16 @@ public class LogEntry {
         return from(timeStamp, logLevel, logEntryMessagePart);
     }
 
+    public String format() {
+        return String.format("%s %s : %s",
+                timestamp,
+                logLevel,
+                message);
+    }
+
+    public boolean withinRangeInclusive(LocalDateTime from, LocalDateTime to) {
+        return (timestamp.isAfter(from) && timestamp.isBefore(to) ||
+                (timestamp.isEqual(from) || timestamp.isEqual(to)));
+    }
+
 }

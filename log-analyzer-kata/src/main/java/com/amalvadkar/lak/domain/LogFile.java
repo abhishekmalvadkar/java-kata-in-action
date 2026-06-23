@@ -7,14 +7,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import static java.lang.String.format;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
 public class LogFile {
+    private static final String WITH_NEW_LINE = "\n";
+
     private final List<LogEntry> entries;
 
     public static LogFile from(String logEntries) {
@@ -70,14 +70,12 @@ public class LogFile {
 
     public String entriesBetween(LocalDateTime from, LocalDateTime to) {
         return entries.stream()
-                .filter(logEntry -> {
-                    LocalDateTime timestamp = logEntry.getTimestamp();
-                    return (timestamp.isAfter(from) && timestamp.isBefore(to) ||
-                            (timestamp.isEqual(from) || timestamp.isEqual(to)));
-                }).map(logEntry -> format("%s %s : %s",
-                        logEntry.getTimestamp(),
-                        logEntry.getLogLevel(),
-                        logEntry.getMessage()))
-                .collect(Collectors.joining("\n"));
+                .filter(ifRangeMatchInclusive(from, to))
+                .map(LogEntry::format)
+                .collect(joining(WITH_NEW_LINE));
+    }
+
+    private static Predicate<LogEntry> ifRangeMatchInclusive(LocalDateTime from, LocalDateTime to) {
+        return logEntry -> logEntry.withinRangeInclusive(from, to);
     }
 }
