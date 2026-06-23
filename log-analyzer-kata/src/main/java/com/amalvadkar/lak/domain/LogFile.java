@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 import static java.util.stream.Collectors.counting;
@@ -68,6 +69,14 @@ public class LogFile {
     }
 
     public String entriesBetween(LocalDateTime start, LocalDateTime end) {
-        return "";
+        return entries.stream()
+                .filter(logEntry -> {
+                    LocalDateTime timestamp = logEntry.getTimestamp();
+                    return timestamp.isAfter(start) && timestamp.isBefore(end);
+                }).map(logEntry -> format("%s %s : %s",
+                        logEntry.getTimestamp(),
+                        logEntry.getLogLevel(),
+                        logEntry.getMessage()))
+                .collect(Collectors.joining("\n"));
     }
 }
