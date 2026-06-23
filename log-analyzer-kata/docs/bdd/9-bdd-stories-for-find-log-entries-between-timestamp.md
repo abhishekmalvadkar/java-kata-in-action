@@ -45,3 +45,20 @@
 * Then:
   * It should return like below:
     * 2026-07-10T10:30:00 INFO : User logout
+
+
+* Scenario:
+  * Include log entries matching both start and end timestamps
+* Given:
+  * 2026-07-10T10:00:00 INFO : User login
+  * 2026-07-10T10:15:30 WARN : High memory usage
+  * 2026-07-10T10:30:00 ERROR : Payment failed
+* When:
+  * We call entriesBetween(LocalDateTime from, LocalDateTime to) method on LogFile instance
+    * From : 2026-07-10T10:00:00
+    * To   : 2026-07-10T10:30:00
+* Then:
+  * It should return like below:
+    * 2026-07-10T10:00:00 INFO : User login
+    * 2026-07-10T10:15:30 WARN : High memory usage
+    * 2026-07-10T10:30:00 ERROR : Payment failed

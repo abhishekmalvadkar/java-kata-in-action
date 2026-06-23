@@ -75,4 +75,21 @@ public class LogFileEntriesBetweenTest extends AbstractLogAnalyzerTest {
         LocalDateTime to = LocalDateTime.of(2026, 7, 10, 10, 30, 0);
         assertThat(logFile.entriesBetween(from, to)).isEqualTo("2026-07-10T10:30 INFO : User logout");
     }
+
+    @Test
+    void should_return_with_inclusive_from_and_to_timestamp_entries_between_give_time_range() {
+        String logEntries = """
+                2026-07-10T10:00:00 INFO : User login
+                2026-07-10T10:15:30 WARN : High memory usage
+                2026-07-10T10:30:00 ERROR : Payment failed
+                """;
+        LogFile logFile = LogFile.from(logEntries);
+
+        LocalDateTime from = LocalDateTime.of(2026, 7, 10, 10, 0, 0);
+        LocalDateTime to = LocalDateTime.of(2026, 7, 10, 10, 30, 0);
+        assertThat(logFile.entriesBetween(from, to)).isEqualTo("""
+                2026-07-10T10:00 INFO : User login
+                2026-07-10T10:15:30 WARN : High memory usage
+                2026-07-10T10:30 ERROR : Payment failed""");
+    }
 }
