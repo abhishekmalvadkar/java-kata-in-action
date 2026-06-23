@@ -68,11 +68,11 @@ public class LogFile {
         return format("%sT%s", timestamp.toLocalDate(), timestamp.getHour());
     }
 
-    public String entriesBetween(LocalDateTime start, LocalDateTime end) {
+    public String entriesBetween(LocalDateTime from, LocalDateTime to) {
         return entries.stream()
                 .filter(logEntry -> {
                     LocalDateTime timestamp = logEntry.getTimestamp();
-                    return timestamp.isAfter(start) && timestamp.isBefore(end);
+                    return timestamp.isAfter(from) && timestamp.isBefore(to);
                 }).map(logEntry -> format("%s %s : %s",
                         logEntry.getTimestamp(),
                         logEntry.getLogLevel(),
