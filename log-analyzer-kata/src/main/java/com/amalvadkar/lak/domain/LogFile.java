@@ -78,4 +78,11 @@ public class LogFile {
     private static Predicate<LogEntry> ifRangeMatchInclusive(LocalDateTime from, LocalDateTime to) {
         return logEntry -> logEntry.withinRangeInclusive(from, to);
     }
+
+    public String sortByTimeStampAsc() {
+        return entries.stream()
+                .sorted()
+                .map(LogEntry::format)
+                .collect(joining(WITH_NEW_LINE));
+    }
 }
