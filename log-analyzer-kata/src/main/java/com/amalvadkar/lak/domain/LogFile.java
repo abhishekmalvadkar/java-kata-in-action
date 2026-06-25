@@ -85,4 +85,8 @@ public class LogFile {
                 .map(LogEntry::format)
                 .collect(joining(WITH_NEW_LINE));
     }
+
+    public String sortByTimeStampDesc() {
+        return "";
+    }
 }
