@@ -4,6 +4,7 @@ import com.amalvadkar.lak.enums.LogLevel;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -15,6 +16,8 @@ import static java.util.stream.Collectors.*;
 @RequiredArgsConstructor
 public class LogFile {
     private static final String WITH_NEW_LINE = "\n";
+    public static final Comparator<LogEntry> OLDEST_ENTRY_FIRST_COMPARATOR = comparing(LogEntry::getTimestamp);
+    public static final Comparator<LogEntry> LATEST_ENTRY_FIRST_COMPARATOR = OLDEST_ENTRY_FIRST_COMPARATOR.reversed();
 
     private final List<LogEntry> entries;
 
@@ -82,14 +85,14 @@ public class LogFile {
 
     public String sortByTimeStampAsc() {
         return entries.stream()
-                .sorted(comparing(LogEntry::getTimestamp))
+                .sorted(OLDEST_ENTRY_FIRST_COMPARATOR)
                 .map(LogEntry::format)
                 .collect(joining(WITH_NEW_LINE));
     }
 
     public String sortByTimeStampDesc() {
         return entries.stream()
-                .sorted(comparing(LogEntry::getTimestamp).reversed())
+                .sorted(LATEST_ENTRY_FIRST_COMPARATOR)
                 .map(LogEntry::format)
                 .collect(joining(WITH_NEW_LINE));
     }
