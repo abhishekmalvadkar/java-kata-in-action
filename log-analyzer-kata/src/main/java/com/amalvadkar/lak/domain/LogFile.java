@@ -4,7 +4,6 @@ import com.amalvadkar.lak.enums.LogLevel;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -89,12 +88,7 @@ public class LogFile {
 
     public String sortByTimeStampDesc() {
         return entries.stream()
-                .sorted(new Comparator<LogEntry>() {
-                    @Override
-                    public int compare(LogEntry o1, LogEntry o2) {
-                        return o2.getTimestamp().compareTo(o1.getTimestamp());
-                    }
-                })
+                .sorted((o1, o2) -> o2.getTimestamp().compareTo(o1.getTimestamp()))
                 .map(LogEntry::format)
                 .collect(joining(WITH_NEW_LINE));
     }
