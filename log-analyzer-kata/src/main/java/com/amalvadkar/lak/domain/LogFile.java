@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import static java.lang.String.format;
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
@@ -88,7 +89,7 @@ public class LogFile {
 
     public String sortByTimeStampDesc() {
         return entries.stream()
-                .sorted((o1, o2) -> o2.getTimestamp().compareTo(o1.getTimestamp()))
+                .sorted(comparing(LogEntry::getTimestamp).reversed())
                 .map(LogEntry::format)
                 .collect(joining(WITH_NEW_LINE));
     }
