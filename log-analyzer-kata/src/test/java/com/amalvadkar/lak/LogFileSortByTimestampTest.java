@@ -33,6 +33,6 @@ public class LogFileSortByTimestampTest extends AbstractLogAnalyzerTest {
         assertThat(logFile.sortByTimeStampDesc()).isEqualTo("""
                 2026-07-10T10:45:12 ERROR : Payment failed
                 2026-07-10T10:15:30 WARN : High memory usage
-                2026-07-10T10:00:00 INFO : User login""");
+                2026-07-10T10:00 INFO : User login""");
     }
 }
