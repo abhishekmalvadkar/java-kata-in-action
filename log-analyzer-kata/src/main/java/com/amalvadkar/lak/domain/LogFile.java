@@ -4,20 +4,18 @@ import com.amalvadkar.lak.enums.LogLevel;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
+import static com.amalvadkar.lak.domain.LogEntry.LATEST_ENTRY_FIRST_COMPARATOR;
+import static com.amalvadkar.lak.domain.LogEntry.OLDEST_ENTRY_FIRST_COMPARATOR;
 import static java.lang.String.format;
-import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
 public class LogFile {
     private static final String WITH_NEW_LINE = "\n";
-    public static final Comparator<LogEntry> OLDEST_ENTRY_FIRST_COMPARATOR = comparing(LogEntry::getTimestamp);
-    public static final Comparator<LogEntry> LATEST_ENTRY_FIRST_COMPARATOR = OLDEST_ENTRY_FIRST_COMPARATOR.reversed();
 
     private final List<LogEntry> entries;
 
