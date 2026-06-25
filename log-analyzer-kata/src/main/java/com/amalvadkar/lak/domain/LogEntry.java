@@ -1,6 +1,7 @@
 package com.amalvadkar.lak.domain;
 
 import com.amalvadkar.lak.enums.LogLevel;
+import com.amalvadkar.lak.enums.Sort;
 import com.amalvadkar.lak.exceptions.InvalidLogEntryException;
 import lombok.Data;
 
@@ -48,6 +49,13 @@ public class LogEntry {
         String timeStamp = logEntryNonMessageParts[0];
         String logLevel = logEntryNonMessageParts[1];
         return from(timeStamp, logLevel, logEntryMessagePart);
+    }
+
+    public static Comparator<LogEntry> comparingTimestamp(Sort sort) {
+        if (sort.isAsc()) {
+            return OLDEST_ENTRY_FIRST_COMPARATOR;
+        }
+        return LATEST_ENTRY_FIRST_COMPARATOR;
     }
 
     public String format() {

@@ -1,6 +1,7 @@
 package com.amalvadkar.lak.domain;
 
 import com.amalvadkar.lak.enums.LogLevel;
+import com.amalvadkar.lak.enums.Sort;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -8,8 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import static com.amalvadkar.lak.domain.LogEntry.LATEST_ENTRY_FIRST_COMPARATOR;
-import static com.amalvadkar.lak.domain.LogEntry.OLDEST_ENTRY_FIRST_COMPARATOR;
+import static com.amalvadkar.lak.domain.LogEntry.comparingTimestamp;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.*;
 
@@ -81,17 +81,11 @@ public class LogFile {
         return logEntry -> logEntry.withinRangeInclusive(from, to);
     }
 
-    public String sortByTimeStampAsc() {
+    public String sortByTimeStamp(Sort sort) {
         return entries.stream()
-                .sorted(OLDEST_ENTRY_FIRST_COMPARATOR)
+                .sorted(comparingTimestamp(sort))
                 .map(LogEntry::format)
                 .collect(joining(WITH_NEW_LINE));
     }
 
-    public String sortByTimeStampDesc() {
-        return entries.stream()
-                .sorted(LATEST_ENTRY_FIRST_COMPARATOR)
-                .map(LogEntry::format)
-                .collect(joining(WITH_NEW_LINE));
-    }
 }
