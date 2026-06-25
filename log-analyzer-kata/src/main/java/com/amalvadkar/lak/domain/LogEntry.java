@@ -7,7 +7,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class LogEntry implements Comparable<LogEntry> {
+public class LogEntry {
     private static final String LOG_FORMAT_REGEX = "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2})\\s+(INFO|WARN|ERROR)\\s+:\\s+(.+)$";
 
     private final LocalDateTime timestamp;
@@ -55,10 +55,5 @@ public class LogEntry implements Comparable<LogEntry> {
     public boolean withinRangeInclusive(LocalDateTime from, LocalDateTime to) {
         return (timestamp.isAfter(from) && timestamp.isBefore(to) ||
                 (timestamp.isEqual(from) || timestamp.isEqual(to)));
-    }
-
-    @Override
-    public int compareTo(LogEntry logEntry) {
-        return timestamp.compareTo(logEntry.getTimestamp());
     }
 }

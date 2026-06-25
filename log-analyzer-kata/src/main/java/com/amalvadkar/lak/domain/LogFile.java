@@ -82,7 +82,7 @@ public class LogFile {
 
     public String sortByTimeStampAsc() {
         return entries.stream()
-                .sorted()
+                .sorted(comparing(LogEntry::getTimestamp))
                 .map(LogEntry::format)
                 .collect(joining(WITH_NEW_LINE));
     }
