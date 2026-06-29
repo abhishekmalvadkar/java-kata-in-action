@@ -49,4 +49,21 @@ public class LogFileFindBusyHourSummaryTest extends AbstractLogAnalyzerTest {
         Optional<BusyHourSummary> busyHourSummary = logFile.findBusyHourSummary();
         assertThat(busyHourSummary).isEmpty();
     }
+
+    @Test
+    void should_return_latest_busy_hour_when_multiple_hours_has_same_entry_count_and_asked_for_busy_hour() {
+        String logEntries = """
+                2026-07-10T10:00:00 INFO : User login
+                2026-07-10T10:30:00 WARN : High memory usage
+                2026-07-10T11:00:00 INFO : User logout
+                2026-07-10T11:30:00 ERROR : Payment failed
+                """;
+        LogFile logFile = LogFile.from(logEntries);
+
+        Optional<BusyHourSummary> busyHourSummary = logFile.findBusyHourSummary();
+        assertThat(busyHourSummary).isNotEmpty();
+        assertThat(busyHourSummary.get()).isEqualTo(
+                new BusyHourSummary("2026-07-10T11", 2L)
+        );
+    }
 }
