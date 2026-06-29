@@ -1,5 +1,6 @@
 package com.amalvadkar.lak.domain;
 
+import com.amalvadkar.lak.BusyHourSummary;
 import com.amalvadkar.lak.enums.LogLevel;
 import com.amalvadkar.lak.enums.Sort;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static com.amalvadkar.lak.domain.LogEntry.comparingTimestamp;
@@ -88,4 +90,12 @@ public class LogFile {
                 .collect(joining(WITH_NEW_LINE));
     }
 
+    public Optional<BusyHourSummary> findBusyHourSummary() {
+        Map<String, Long> hourToEntryCountMap = groupEntryCountByHour();
+        return hourToEntryCountMap.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(e -> {
+                    return new BusyHourSummary(e.getKey(), e.getValue());
+        });
+    }
 }
