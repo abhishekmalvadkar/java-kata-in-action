@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import static com.amalvadkar.lak.domain.LogEntry.comparingTimestamp;
 import static java.lang.String.format;
+import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
@@ -93,9 +94,7 @@ public class LogFile {
     public Optional<BusyHourSummary> findBusyHourSummary() {
         Map<String, Long> hourToEntryCountMap = groupEntryCountByHour();
         return hourToEntryCountMap.entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                .map(e -> {
-                    return new BusyHourSummary(e.getKey(), e.getValue());
-        });
+                .max(comparingByValue())
+                .map(BusyHourSummary::new);
     }
 }
