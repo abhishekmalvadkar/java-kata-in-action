@@ -36,4 +36,12 @@ public class LogFileSortByTimestampTest extends AbstractLogAnalyzerTest {
                 2026-07-10T10:15:30 WARN : High memory usage
                 2026-07-10T10:00 INFO : User login""");
     }
+
+    @Test
+    void should_return_empty_string_when_sort_by_timestamp_in_desc_order_on_empty_log_file() {
+        String logEntries = "";
+        LogFile logFile = LogFile.from(logEntries);
+
+        assertThat(logFile.sortByTimeStamp(Sort.DESC)).isEmpty();
+    }
 }
